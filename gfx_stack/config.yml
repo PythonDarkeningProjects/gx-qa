@@ -1,0 +1,165 @@
+2D_Driver:
+  glamour: true
+  sna: false
+dut_config:
+  dut_user: gfx
+latest_commits:
+  value: false
+miscellaneous:
+  mailing_list:
+  - humberto.i.perez.rodriguez@intel.com
+  - humberto.i.perez.rodriguez@linux.intel.com
+  maximum_permitted_time: 10000
+  server_for_upload_package: linuxgraphics.intel.com
+  server_user: gfxserver
+  upload_package: true
+package_config:
+  package_name: xorgxserver
+patchwork:
+  cairo:
+    apply: false
+    path: ''
+  checkBeforeBuild: true
+  dri2proto:
+    apply: false
+    path: ''
+  drm:
+    apply: false
+    path: ''
+  glproto:
+    apply: false
+    path: ''
+  intel-gpu-tools:
+    apply: false
+    path: ''
+  intel-vaapi-driver:
+    apply: false
+    path: ''
+  libX11:
+    apply: false
+    path: ''
+  libXext:
+    apply: false
+    path: ''
+  libXfont:
+    apply: false
+    path: ''
+  libinput:
+    apply: false
+    path: ''
+  libpciaccess:
+    apply: false
+    path: ''
+  libva:
+    apply: false
+    path: ''
+  libva-utils:
+    apply: false
+    path: ''
+  libxtrans:
+    apply: false
+    path: ''
+  macros:
+    apply: false
+    path: ''
+  mesa:
+    apply: false
+    path: ''
+  piglit:
+    apply: false
+    path: ''
+  pixman:
+    apply: false
+    path: ''
+  x11proto:
+    apply: false
+    path: ''
+  xf86-input-evdev:
+    apply: false
+    path: ''
+  xf86-input-keyboard:
+    apply: false
+    path: ''
+  xf86-input-libinput:
+    apply: false
+    path: ''
+  xf86-input-mouse:
+    apply: false
+    path: ''
+  xf86-input-synaptics:
+    apply: false
+    path: ''
+  xf86-input-wacom:
+    apply: false
+    path: ''
+  xf86-video-chips:
+    apply: false
+    path: ''
+  xf86-video-fbdev:
+    apply: false
+    path: ''
+  xf86-video-intel:
+    apply: false
+    path: ''
+  xf86-video-qxl:
+    apply: false
+    path: ''
+  xf86-video-vesa:
+    apply: false
+    path: ''
+  xf86-video-vmware:
+    apply: false
+    path: ''
+  xkbcomp:
+    apply: false
+    path: ''
+  xkeyboard-config:
+    apply: false
+    path: ''
+  xproto:
+    apply: false
+    path: ''
+  xrdb:
+    apply: false
+    path: ''
+  xserver:
+    apply: false
+    path: ''
+specific_commit:
+  cairo: 99427c3f4f6ce7ce3c95c4caa4d2b8ff7c0093d9
+  dri2proto: b118dfbf91dcec6d82dfddc3f41031e23ea3c039
+  drm: d55d0804f9e37637d7510f38f97e07a50c6b7baa
+  glproto: 500b137bbdba1cd8ae943849fef6e79fdd4eca40
+  intel-gpu-tools: c718ba805208e55d675defe9b2a66852e2ae038c
+  intel-vaapi-driver: 6f6a867dacb4d2fb2c8dec4553aa4b80b16a73ce
+  libX11: e835a9dcc3362b5e92893be756dd7ae361e64ced
+  libXext: a07b4bb8290d0c1bba7bcecd5bb6896fbe1b169c
+  libXfont: 9112a6846b9d8ff18f7568c58e06d0a450e25814
+  libinput: cc9a4debd3889a3b3a5139576ea873eebcf7dde7
+  libpciaccess: 4f1ac52e828eed1c410ee66304fcb7a17f25da40
+  libva: 8d8015ef82e57817fd8c2a9f23001995b67023aa
+  libva-utils: 7eff5d00d41ca85d63220a57d4727b134594da6e
+  libxtrans: 28366676effaa512e43bfd2276a317389a992511
+  macros: 39f07f7db58ebbf3dcb64a2bf9098ed5cf3d1223
+  mesa: 5c98d3825ccbed9054a1bb2de607116b2b31d48b
+  piglit: f7f52e558b39135add3eec594423c2b7fc30a430
+  pixman: 85467ec308f8621a5410c007491797b7b1847601
+  value: true
+  x11proto: ab8666661fc68f075b8d6ffabe22c6b577c30ac1
+  xf86-input-evdev: 8c1058f2ebd9355068fb1b67329f3428ca64775b
+  xf86-input-keyboard: 940f44149d1037cfc14bbb3628044a2bd002c33e
+  xf86-input-libinput: 6ce3d0249d426e6b3c83e7f86d76bb3145c00a74
+  xf86-input-mouse: 3c8f243b750a92d5837a449d344ff884dbd02b57
+  xf86-input-synaptics: afa8d7bb469e7ce01d9239f0dd790d3d620bfbd6
+  xf86-input-wacom: b30e2d27fdb30ff4b425fc62432cab636fe163b9
+  xf86-video-chips: c2711eedaac20af973721111a909a6f575078410
+  xf86-video-fbdev: 3cf99231199bd5bd9e681e85d9da1f9eb736e3e7
+  xf86-video-intel: c89905754b929f0421db7ea6d60b8942ccdbd8af
+  xf86-video-qxl: ee8f904ab0d590c741e640e9548c472e6a58b3cc
+  xf86-video-vesa: b9f9c95ca2383460aa283adeeee6e0a66eed722b
+  xf86-video-vmware: 08ad438e2793248452dab100822cbfcaa05b9938
+  xkbcomp: 3fcd5f4490adee266eb4c0110d058c7f4e515e36
+  xkeyboard-config: e4d92ed0a750e1b5979809d30f1d84547c02fc98
+  xproto: ab8666661fc68f075b8d6ffabe22c6b577c30ac1
+  xrdb: ae86081a92522653ff1523c92524ff892f75d496
+  xserver: fbd80b2c8ebe9fd41229dc5438524d107c071ff1

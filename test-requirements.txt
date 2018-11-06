@@ -1,0 +1,6 @@
+flake8
+hacking
+flake8-import-order
+mock
+coverage
+pylint

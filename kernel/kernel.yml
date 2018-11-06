@@ -1,0 +1,39 @@
+drm-tip:
+  kernel_keys: {
+  'CONFIG_DEBUG_INFO':'n',
+  'CONFIG_DRM_AMDGPU':'n',
+  'CONFIG_MMC_BLOCK':'n',
+  'CONFIG_MMC':'n',
+  'CONFIG_DEBUG_KMEMLEAK_EARLY_LOG_SIZE': '4096',
+  'CONFIG_DEBUG_KMEMLEAK':'y',
+  'CONFIG_DRM_I915_SELFTEST':'y',
+  'CONFIG_DRM_DEBUG_MM_SELFTEST':'m',
+  'CONFIG_DRM': 'y',
+  'CONFIG_HAS_IOMEM': 'y'
+  }
+  kernel_name: 'drm-tip'
+  kernel_folder_nickname: ''
+drm-intel-qa:
+  kernel_keys: {
+  'CONFIG_DEBUG_INFO':'y',
+  'CONFIG_DRM_AMDGPU':'n',
+  'CONFIG_MMC_BLOCK':'n',
+  'CONFIG_MMC':'n',
+  'CONFIG_DEBUG_KMEMLEAK_EARLY_LOG_SIZE': '4096',
+  'CONFIG_DEBUG_KMEMLEAK':'y',
+  'CONFIG_DRM_I915_SELFTEST':'y',
+  'CONFIG_DRM_DEBUG_MM_SELFTEST':'m',
+  'CONFIG_DRM': 'y',
+  'CONFIG_HAS_IOMEM': 'y'
+  }
+  kernel_name: 'drm-intel-qa'
+  kernel_folder_nickname: ''
+miscellaneous:
+  kernel_url: 'https://anongit.freedesktop.org/git/drm-tip.git'
+  mailing_list:
+  - humberto.i.perez.rodriguez@intel.com
+  - humberto.i.perez.rodriguez@linux.intel.com
+  server_for_upload_package: linuxgraphics.intel.com
+  server_user: gfxserver
+  upload_package: True
+  enforce: False

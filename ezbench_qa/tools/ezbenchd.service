@@ -1,0 +1,12 @@
+[Unit]
+Description=Ezbench's daemon that executes the runs
+Conflicts=getty@tty5.service
+After=systemd-user-sessions.service getty@tty1.service plymouth-quit.service
+
+[Service]
+ExecStart=<ezbench_path>/ezbenchd.py --http_server <ip>:8080
+User=<user>  
+Group=<user>                                                                                                                                                                                                                                                                                                   
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,16 @@
+INTEL® GRAPHICS UPDATE TOOL FOR LINUX*
+
+STACK DESCRIPTION
+This is a stack of individual graphics projects that have been tested together to generate a proven recipe against different hardware and software configurations. The notes highlight the most important features and bug fixes and also list all known issues.
+
+SUPPORTED HARDWARE
+7th Generation Intel® Core™ processors with Intel® HD Graphics - Kaby Lake
+6th Generation Intel® Core™ processors with Intel® HD Graphics - Skylake
+5th Generation Intel® Core™ processors with Intel® HD Graphics - Broadwell
+4th Generation Intel® Core™ processors with Intel® HD Graphics - Haswell
+3rd Generation Intel® Core™ processors with Intel® HD Graphics - Ivy Bridge
+2nd Generation Intel® Core™ processors with Intel® HD Graphics - Sandy Bridge
+Intel® Celeron® Processors with Intel® HD Graphics - Apollo Lake
+Intel® Celeron® Processors with Intel® HD Graphics - Braswell
+Intel® Celeron® Processors with Intel® HD Graphics - Bay Trail
+Intel® Atom™ N450 with Intel® Graphics Media Accelerator 3150 (Pine Trail)

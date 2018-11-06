@@ -1,0 +1,144 @@
+
+Create a file in : /etc/motd.sh
+
+
+################################################
+#!/bin/bash
+
+clear
+
+##############################################################
+# LOCAL COLORS                                               #
+##############################################################
+export nc="\e[0m"
+export underline="\e[4m"
+export bold="\e[1m"
+export green="\e[1;32m"
+export red="\e[1;31m"
+export yellow="\e[1;33m"
+export blue="\e[1;34m"
+export cyan="\e[1;36m"
+
+# http://patorjk.com/software/taag/#p=display&f=Digital&t=Intel%20Graphics%20for%20Linux (font Digital)
+echo -ne "\n\n"
+echo " +-+-+-+-+-+ +-+-+-+-+-+-+-+-+ +-+-+-+ +-+-+-+-+-+"
+echo " |I|n|t|e|l| |G|r|a|p|h|i|c|s| |f|o|r| |L|i|n|u|x|"
+echo " +-+-+-+-+-+ +-+-+-+-+-+-+-+-+ +-+-+-+ +-+-+-+-+-+"
+echo
+echo " Project: 01.org Intel Open Source"
+# Display SSH banner when user loggin in bifrost,intel,com
+echo
+echo -e "${red}###########################################################################################################${nc}"
+echo -e "${red}#${nc} ${yellow}ALERT!${nc} You are entering into a secured area!                                                            ${red}#${nc}"
+echo -e "${red}#${nc} Your IP, Login Time, Username has been noted and has been sent to the server administrator!             ${red}#${nc}"
+echo -e "${red}#${nc} This service is restricted to authorized users only.                                                    ${red}#${nc}"
+echo -e "${red}#${nc} All activities on this system are logged.                                                               ${red}#${nc}"
+echo -e "${red}#${nc} Unauthorized access will be fully investigated and reported to the appropriate law enforcement agencies.${red}#${nc}"
+echo -ne "${red}###########################################################################################################${nc} \n\n\n"
+
+# Getting information from user loggin
+_SERVER="bifrost.intel.com"
+_REMOTE_IP=`who am i | awk '{print $5}' | sed -e 's/(//g' -e s'/)//'g`
+_REMOTE_USER=`who am i | awk '{print $1}'`
+_MONTH=$(date +"%b")
+_MONTH=$(echo ${_MONTH} | tr "[:upper:]" "[:lower:]")
+_YEAR=$(date +"%G")
+_DAY=$(date +"%d")
+_HOUR=$(date +%I:%M:%S)
+_CHECK_WID=`nslookup ${_REMOTE_IP} | grep name | awk -F"name = " '{print $2}'`
+_EMAIL="/opt/ssh_reporter/ssh_emailer.py"
+_BACKUP="/opt/ssh_reporter/ssh_emailer.py.bkp"
+
+# Showing some information
+echo "######################################################"
+echo -e "# ${cyan}Loggin from${nc}    : [${_REMOTE_IP}]"
+echo -e "# ${cyan}Loggin as${nc}      : [${_REMOTE_USER}]"
+echo -e "# ${cyan}Machine logged${nc} : [${_CHECK_WID}]"
+echo -ne "###################################################### \n\n\n"
+
+cp ${_BACKUP} ${_EMAIL} &> /dev/null
+# Sending the email to bifrost.intel.com [administrators]
+sed -i '10s/^.*$/ Hi admin[s]/g' ${_EMAIL}
+sed -i '12s/^.*$/ a new ssh connection was detected on '${_SERVER}'./g' ${_EMAIL}
+sed -i '13s/^.*$/ please see the details below./g' ${_EMAIL}
+sed -i '15s/^.*$/ user connected   : ['${_REMOTE_USER}']/g' ${_EMAIL}
+sed -i '16s/^.*$/ ip address              : ['${_REMOTE_IP}']/g' ${_EMAIL}
+sed -i '17s|^.*$| date                         : ['"${_DATE}"']|g' ${_EMAIL}
+sed -i '18s/^.*$/ Machine logged  : ['${_CHECK_WID}']/g' ${_EMAIL}
+sed -i '20s/^.*$/ This is an automated message please do not reply/g' ${_EMAIL}
+sed -i '21s/^.*$/ Project: 01.org Intel Open Source/g' ${_EMAIL}
+sed -i '22s/^.*$/ Intel Graphics for Linux/g' ${_EMAIL}
+python ${_EMAIL} 
+rm -f ${_EMAIL} &> /dev/null
+################################################
+
+
+add the file to  : /etc/profile as "bash /etc/motd.sh" # this file is executed when a user is loggin trought ssh connection
+
+
+# adding a group in order to execute the script /etc/motd.sh without sudo password
+# addgroup reporter
+# mkdir -p /opt/ssh_reporter
+# chown -R root:reporter /opt/ssh_reporter
+# chmod -R g+w /opt/ssh_reporter
+# chmod g+s /opt/ssh_reporter
+# setfacl -m "default:group::rwx" /opt/ssh_reporter
+
+[add all required users to reporter's group]
+# usermod -a -G reporter __USERNAME__
+
+################################################
+create the file : "ssh_emailer.py.bkp" into /opt/ssh_reporter
+
+
+import smtplib
+
+# example for several receivers = ['humberto.i.perez.rodriguez@intel.com','jairo.daniel.miramontes.caton@intel.com','jairo.daniel.miramontes.caton@linux.intel.com']
+sender = 'ssh_watcher@noreply.com'
+receivers = ['humberto.i.perez.rodriguez@intel.com','luis.botello.ortega@intel.com']
+message = """From: <ssh_watcher@noreply.com>
+To: humberto.i.perez.rodriguez@intel.com,luis.botello.ortega@intel.com
+Subject: new SSH connection to bifrost.intel.com detected
+
+This is a test e-mail message.
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""
+
+smtpObj = smtplib.SMTP('smtp.intel.com')
+smtpObj.sendmail(sender, receivers, message)
+
+################################################
+
+
+
+
+
+
+ useradd -N -m -d /home/eliommar -s /bin/bash -f 60 eliommar
+
+ deluser --remove-home newuser
+
+ emiramon
+ lbotell
+ mgperezi
+ eliommar
+
+ changeme
+
+
+
+ # enable root login throught ssh
+file : /etc/ssh/sshd_config
+edit : PermitRootLogin prohibit-password

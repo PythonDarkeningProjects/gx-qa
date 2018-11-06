@@ -1,0 +1,9 @@
+configuration:
+  user : gfx
+  password : linux
+  path_to_igt : # exmaple ../intel-gpu-tools
+  path_to_piglit : # example ../piglit
+  testlist : # path to ../testlist.file
+  path_to_results :
+  dmesg_script : /home/gfx/dmesg.sh # Usualy located in the same folder as runner.py (dmesg.sh)
+  reboot_on_error: False # Set to True of False

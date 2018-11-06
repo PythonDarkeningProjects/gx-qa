@@ -1,0 +1,21 @@
+
+In order to get the best results for IGT please fix the issue with your swap partition
+
+--> type the following commands : 
+
+1) sudo swapoff /dev/sda3 (this command will umount the swap partition)
+	
+2) sudo mkswap /dev/sda3 (this command will return a new UUID that you need to replace for the old in /etc/fstab)
+
+	2.1) # nano /etc/fstab
+
+		and replace the line below of this for the UUID get in the previous step: # swap was on /dev/sda3 during installation
+		UUID=<your_new_UUID>
+
+3) sudo swapon /dev/sda3 (this command will mount the swap againg)
+
+4) sudo update-initramfs -k `(uname -r)` -u
+
+5) reboot the DUT to apply the changes
+
+Note : the swap partition is usually used by intel-gpu-tools S4 (hibernate) tests like kms and power

@@ -1,0 +1,75 @@
+How to set pyDash (v1.4.6)
+
+1) install apache2
+	sudo apt-get install apache2
+2) install Django
+	sudo apt-get install python-django
+3) Install WSGI Mod on Apache
+	sudo apt-get install libapache2-mod-wsgi
+4) Clone pyDash 
+	sudo -E git clone https://github.com/k3oni/pydash.git /var/www/pydash
+
+	cd /var/www/pydash; sudo pip install -r requirements.txt
+
+	sudo chown -R www-data.www-data /var/www/pydash
+
+5) Create and edit the file called "pydash.conf" into /etc/apache2/sites-available/
+	sudo nano /etc/apache2/sites-available/pydash.conf
+
+# Add the next lines on the created file
+<VirtualHost *:80>
+	ServerAdmin (username)@intel.com
+	
+	DocumentRoot /var/www/pydash
+	WSGIScriptAlias / /var/www/pydash/pydash/wsgi.py
+
+	Alias /static "/var/www/pydash/static"
+	<Directory "/var/www/pydash/static">
+		Order allow,deny
+		Allow from all
+	</Directory>
+
+	# ErrorLog /var/www/logs/error.log
+	# CustomLog /var/www/logs/custom.log combined
+</VirtualHost>
+
+6) Copy the file created to /etc/apache2/sites-enable
+	sudo cp /etc/apache2/sites-available/pydash.conf /etc/apache2/sites-enabled
+
+7) Edit the file "apache2.conf" located in /etc/apache2/ 
+
+	sudo nano /etc/apache2/apache2.conf
+
+# Adding the next lines at the end
+
+WSGIPythonPath /var/www/pydash
+ServerName localhost
+
+8) Enter to the folder /var/www/pydash, and do syncdb from django in order to setup the user and password for PyDash
+
+	sudo python /var/www/pydash/manage.py syncdb
+
+9) rename the default apache2 files (in order to restart apache2 without issues)
+
+	sudo mv /etc/apache2/sites-enabled/000-default.conf /etc/apache2/sites-enabled/000-default.conf
+	sudo mv /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf.old
+
+	Note : this files are established in /etc/apache2.conf file
+
+10) Restart Apache to see the changes on it
+sudo service apache2 restart
+
+#Check the pydash site at
+http://<your.ip>/main or only with the ip 
+
+
+#references
+#https://k3oni.github.io/pydash/
+#https://github.com/k3oni/pydash/wiki
+
+Solving issues 
+1) error 500 is because the files inside pydash are not handled by www-date user and group
+	sudo chown -R www-data.www-data /var/www/pydash
+2) wsgi error when restarr apache2 is because apache2 was uninstall or installed again
+	sudo apt-get purge libapache2-mod-wsgi
+	sudo apt-get install libapache2-mod-wsgi

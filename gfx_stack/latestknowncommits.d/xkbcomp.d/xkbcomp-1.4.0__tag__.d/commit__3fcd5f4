@@ -1,0 +1,24 @@
+commit 3fcd5f4490adee266eb4c0110d058c7f4e515e36
+Author:     Daniel Stone <daniels@collabora.com>
+AuthorDate: Mon May 1 15:59:28 2017 +0100
+Commit:     Daniel Stone <daniels@collabora.com>
+CommitDate: Mon May 1 15:59:28 2017 +0100
+
+    xkbcomp 1.4.0
+    
+    Signed-off-by: Daniel Stone <daniels@collabora.com>
+
+diff --git a/configure.ac b/configure.ac
+index 0c8063e..1dfd8da 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -22,7 +22,7 @@ dnl Process this file with autoconf to create configure.
+ 
+ # Initialize Autoconf
+ AC_PREREQ([2.60])
+-AC_INIT([xkbcomp], [1.3.1],
++AC_INIT([xkbcomp], [1.4.0],
+         [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg], [xkbcomp])
+ AC_CONFIG_SRCDIR([Makefile.am])
+ AC_CONFIG_HEADERS([config.h])
+

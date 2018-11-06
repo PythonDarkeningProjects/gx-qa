@@ -1,0 +1,42 @@
+
+Download ClewareControl (version 2.8) from : 
+
+https://www.vanheusden.com/clewarecontrol/files/clewarecontrol-2.8.tgz
+
+Cleware provides library/tool/executable to control USB and power-cutters
+
+Extract the file on the Raspberry
+
+$ tar -xf clewarecontrol-2.8.tgz
+$ cd clewarecontrol-2.8
+$ make && sudo make install
+
+
+Connect the USB-cutter to the raspberry and do the following
+
+USB-cutter
+  This is a device which is at its heart a switch like the other switches.
+  To use it, you need to start it:
+	clewarecontrol -ag
+  then, you can toggle the USB status like this:
+	clewarecontrol -as 0 1      this will "cut" the USB device (switching
+	                            it off)
+	clewarecontrol -as 0 0      this will enable the USB device again(!)
+  indeed, the logic is inverted.
+
+
+edit sudoers file and add the following lines (in order to run power_control.sh script)
+
+pi ALL=(ALL) NOPASSWD: ALL
+pi ALL = (root) NOPASSWD: /usr/bin/clewarecontrol
+
+
+clone clewarecontrol scripts from : 
+git clone https://github.intel.com/linuxgraphics/gfx-qa-tools.git /home/pi
+
+add this alias to bashrc
+
+alias pcutter_on='bash /home/pi/dev/clewarecontrol/power_control.sh -on'
+alias pcutter_off='bash /home/pi/dev/clewarecontrol/power_control.sh -off'
+
+and that's it

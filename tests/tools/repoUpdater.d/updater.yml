@@ -1,0 +1,13 @@
+treeroot:
+  sender: 'gitlistUpdater@noreply.com'
+  repositories_path: '/home/shared/gitlist'
+  repo_a:
+    url: https://github.intel.com/linuxgraphics/gfx-qa-tools.git
+    alias: False
+    branch: master
+  #repo_b:
+    #url: ssh://hiperezr@git-amr-2.devtools.intel.com:29418/linuxgraphics-development
+    #alias: dev
+    #branch: master
+  mailing_list:
+    - humberto.i.perez.rodriguez@intel.com

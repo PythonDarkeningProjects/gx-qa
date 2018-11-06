@@ -1,0 +1,11 @@
+# interfaces(5) file used by ifup(8) and ifdown(8)
+# The loopback network interface
+allow-hotplug eno1
+iface eno1 inet static
+address 10.219.106.200
+netmask 255.255.255.0
+gateway 10.219.106.1
+dns-nameservers 10.248.2.1
+dns-nameservers 10.219.1.4
+dns-servers 10.2.71.6
+dns-search gv.intel.com

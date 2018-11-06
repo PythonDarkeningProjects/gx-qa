@@ -1,0 +1,30 @@
+commit 49c742557457ff9200a10f32daadfcea50d4911c
+Author:     Adam Jackson <ajax@redhat.com>
+AuthorDate: Thu May 11 17:17:55 2017 -0400
+Commit:     Adam Jackson <ajax@redhat.com>
+CommitDate: Fri May 12 09:49:33 2017 -0400
+
+    meson: Fix CLOCK_MONOTONIC test
+    
+    C99 isn't enough on its own to get POSIX feature sets defined.
+    
+    Signed-off-by: Adam Jackson <ajax@redhat.com>
+    Reviewed-by: Julien Cristau <jcristau@debian.org>
+    Tested-by: Pekka Paalanen <pekka.paalanen@collabora.co.uk>
+
+diff --git a/include/meson.build b/include/meson.build
+index 358e049..2f88828 100644
+--- a/include/meson.build
++++ b/include/meson.build
+@@ -4,7 +4,10 @@ dri_dep = dependency('dri', required: build_dri2 or build_dri3)
+ conf_data = configuration_data()
+ conf_data.set('_DIX_CONFIG_H_', '1')
+ 
++
++
+ conf_data.set('MONOTONIC_CLOCK', cc.compiles('''
++    #define _POSIX_C_SOURCE 200112L
+     #include <time.h>
+     #include <unistd.h>
+     #ifndef CLOCK_MONOTONIC
+

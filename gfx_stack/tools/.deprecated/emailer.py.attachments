@@ -1,0 +1,86 @@
+# coding=utf-8
+import smtplib
+from email.MIMEMultipart import MIMEMultipart
+from email.MIMEText import MIMEText
+from email.MIMEBase import MIMEBase
+from email import encoders
+class bcolors:
+    purple = '\033[95m'
+    blue = '\033[94m'
+    green = '\033[92m'
+    yellow = '\033[93m'
+    red = '\033[91m'
+    end = '\033[0m'
+    bold = '\033[1m'
+    underline = '\033[4m'
+    cyan = '\033[96m'
+    grey = '\033[90m'
+    default = '\033[99m'
+    black = '\033[90m'
+
+fromaddr = "gfxbuilder@noreply"
+toaddr = "humberto.i.perez.rodriguez@intel.com"
+sub = ""
+
+msg = MIMEMultipart()
+ 
+msg['From'] = fromaddr
+msg['To'] = toaddr
+msg['Subject'] = sub
+ 
+body = '''
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
+ 
+msg.attach(MIMEText(body, 'plain'))
+ 
+path_to_filename = "/home/gfx/intel-graphics/packages/WW29/03_01:07:52/"
+filename = "config.cfg" 
+attachment = open(path_to_filename + filename, "rb")
+ 
+part = MIMEBase('application', 'octet-stream')
+part.set_payload((attachment).read())
+encoders.encode_base64(part)
+part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+ 
+msg.attach(part)
+ 
+try:
+        server = smtplib.SMTP('smtp.intel.com')
+        #server.starttls()
+        text = msg.as_string()
+        server.sendmail(fromaddr, toaddr, text)
+        server.quit()
+        print "--> " + bcolors.green + "Successfully sent email" + bcolors.end
+except smtplib.SMTPException:
+		print "--> " + bcolors.red + "Unable to send the mail" + bcolors.end
+
+# references
+# http://naelshiab.com/tutorial-send-email-python/

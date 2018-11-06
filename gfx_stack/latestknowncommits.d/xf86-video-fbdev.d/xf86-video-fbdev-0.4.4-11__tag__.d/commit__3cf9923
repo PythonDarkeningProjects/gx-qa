@@ -1,0 +1,39 @@
+commit 3cf99231199bd5bd9e681e85d9da1f9eb736e3e7
+Author:     Adam Jackson <ajax@redhat.com>
+AuthorDate: Thu Jan 5 14:14:48 2017 -0500
+Commit:     Adam Jackson <ajax@redhat.com>
+CommitDate: Thu Feb 16 12:22:09 2017 -0500
+
+    Remove dead pix24bpp variable
+    
+    Signed-off-by: Adam Jackson <ajax@redhat.com>
+
+diff --git a/src/fbdev.c b/src/fbdev.c
+index 4309d76..eaf3aa8 100644
+--- a/src/fbdev.c
++++ b/src/fbdev.c
+@@ -76,12 +76,6 @@ enum { FBDEV_ROTATE_NONE=0, FBDEV_ROTATE_CW=270, FBDEV_ROTATE_UD=180, FBDEV_ROTA
+ 
+ /* -------------------------------------------------------------------- */
+ 
+-/*
+- * This is intentionally screen-independent.  It indicates the binding
+- * choice made in the first PreInit.
+- */
+-static int pix24bpp = 0;
+-
+ #define FBDEV_VERSION          4000
+ #define FBDEV_NAME             "FBDEV"
+ #define FBDEV_DRIVER_NAME      "fbdev"
+@@ -493,10 +487,6 @@ FBDevPreInit(ScrnInfoPtr pScrn, int flags)
+                return FALSE;
+        xf86PrintDepthBpp(pScrn);
+ 
+-       /* Get the depth24 pixmap format */
+-       if (pScrn->depth == 24 && pix24bpp == 0)
+-               pix24bpp = xf86GetBppFromDepth(pScrn, 24);
+-
+        /* color weight */
+        if (pScrn->depth > 8) {
+                rgb zeros = { 0, 0, 0 };
+

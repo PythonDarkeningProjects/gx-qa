@@ -1,0 +1,9 @@
+Acquire {
+HTTP::proxy "http://proxy.fm.intel.com:911";
+HTTPS::proxy "http://proxy.fm.intel.com:911";
+HTTP::proxy::download.01.org "DIRECT";
+HTTPS::proxy::download.01.org "DIRECT";
+HTTPS::download.01.org::Verify-Peer "false";
+HTTPS::download.01.org::Verify-Host "false";
+FTP::proxy ftp_proxy=ftp://proxy.fm.intel.com:911
+}

@@ -1,0 +1,4 @@
+intel-gpu-tools
+url : https://cgit.freedesktop.org/xorg/app/intel-gpu-tools
+git : https://anongit.freedesktop.org/git/xorg/app/intel-gpu-tools.git
+description : test suite and tools for DRM/KMS drivers

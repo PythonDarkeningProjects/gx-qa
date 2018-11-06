@@ -1,0 +1,264 @@
+dut_config:
+  dut_user: gfx
+package_config:
+  # if this key is not set, the main script will give a default name
+  #package_name: '__name__'
+  package_name: 'xorgxserverww36'
+latest_commits:
+  value: False # (set to True/False)
+  libinput: False
+  glamor: False
+  libva: False
+  libva-utils: False
+  intel-vaapi-driver: False
+  cairo: True
+  macros: False
+  x11proto: False
+  libxtrans: False
+  libX11: False
+  libXext: False
+  dri2proto: False
+  glproto: False
+  libpciaccess: False
+  pixman: False
+  drm: True
+  mesa: False
+  xserver: False # (xserver) has the library 'glamour' modesetting
+  libXfont: False
+  xkeyboard-config : False
+  xkbcomp : False
+  xf86-input-mouse: False
+  xf86-input-keyboard: False
+  xf86-input-evdev: False
+  xf86-input-joystick: False
+  xf86-input-libinput: False # dependencies issue
+  xf86-input-magictouch: False # compilation issue
+  xf86-input-microtouch: False # compilation issue
+  xf86-input-mutouch: False
+  xf86-input-synaptics: False
+  xf86-input-vmmouse: False
+  xf86-video-vmware: False
+  xf86-video-qxl: False
+  xf86-video-amdgpu: False
+  xf86-video-ati: False
+  xf86-video-radeonhd: False
+  xf86-video-modesetting: False
+  xf86-video-chips: False
+  xf86-video-vesa: False
+  xf86-input-wacom: False
+  # xf86-video-fbdev will not compile with the latest commit, please see (HowTo.d) folder (a Framebuffer device based X server)
+  xf86-video-fbdev: False
+  xproto: False
+  xrdb: False
+  # (xf86_video_intel) has the library 'sna'
+  xf86-video-intel: False
+  intel-gpu-tools: True
+  rendercheck: False
+  piglit: True
+specific_commit:
+  value: True # (set to True/False)
+  libinput: 'cc9a4debd3889a3b3a5139576ea873eebcf7dde7' # this commit has autogen.sh tag : (libinput 1.8.1)
+  glamor : '' # needs to be compiled togheter with xorg
+  libva: '8d8015ef82e57817fd8c2a9f23001995b67023aa'
+  libva-utils: 'd941b8b179ad56cccf44fa30ed75286b9d4cc943'
+  intel-vaapi-driver: 'd22e4ef46924715c475c414c6c5c1f060ff286d8'
+  cairo: 'c29db4f0de52727406a8b62f4da9a382084b5a79'
+  macros: '39f07f7db58ebbf3dcb64a2bf9098ed5cf3d1223'
+  x11proto : 'ab8666661fc68f075b8d6ffabe22c6b577c30ac1'
+  libxtrans : '28366676effaa512e43bfd2276a317389a992511'
+  libX11: 'e835a9dcc3362b5e92893be756dd7ae361e64ced'
+  libXext: 'a07b4bb8290d0c1bba7bcecd5bb6896fbe1b169c'
+  dri2proto: 'b118dfbf91dcec6d82dfddc3f41031e23ea3c039'
+  glproto: '500b137bbdba1cd8ae943849fef6e79fdd4eca40'
+  libpciaccess: '4f1ac52e828eed1c410ee66304fcb7a17f25da40'
+  pixman: '85467ec308f8621a5410c007491797b7b1847601'
+  drm: 'd55d0804f9e37637d7510f38f97e07a50c6b7baa'
+  mesa: 'c4741bbb6fb98f78551f9e42ae570dcc924e0031'
+  xserver: 'ea82ececbf85a7ac3d0931687f44c57534fde17c' # (xserver) has the library 'glamour'
+  libXfont: '9112a6846b9d8ff18f7568c58e06d0a450e25814'
+  xkeyboard-config : 'e4d92ed0a750e1b5979809d30f1d84547c02fc98'
+  xkbcomp : '3fcd5f4490adee266eb4c0110d058c7f4e515e36'
+  xf86-input-mouse: '3c8f243b750a92d5837a449d344ff884dbd02b57'
+  xf86-input-keyboard : '940f44149d1037cfc14bbb3628044a2bd002c33e'
+  xf86-input-evdev: '8c1058f2ebd9355068fb1b67329f3428ca64775b'
+  xf86-video-vesa: 'b9f9c95ca2383460aa283adeeee6e0a66eed722b'
+  xf86-video-fbdev: '3cf99231199bd5bd9e681e85d9da1f9eb736e3e7' # this is a special commit (3cf99231199bd5bd9e681e85d9da1f9eb736e3e7)
+  xf86-input-joystick: '' # not needed
+  xf86-input-libinput: '6ce3d0249d426e6b3c83e7f86d76bb3145c00a74'
+  xf86-input-magictouch: '' # not needed
+  xf86-input-microtouch: '' # not needed
+  xf86-input-mutouch: '' # not needed
+  xf86-input-synaptics: 'afa8d7bb469e7ce01d9239f0dd790d3d620bfbd6'
+  xf86-input-vmmouse: '' # not needed
+  xf86-video-vmware: '08ad438e2793248452dab100822cbfcaa05b9938'
+  xf86-video-qxl: 'ee8f904ab0d590c741e640e9548c472e6a58b3cc'
+  xf86-video-amdgpu: ''
+  xf86-video-ati: ''
+  xf86-video-radeonhd: '' # unable to compile
+  xf86-video-modesetting: '' # unable to compile (not needed since Xserver has modesetting on it)
+  xf86-video-chips: 'c2711eedaac20af973721111a909a6f575078410'
+  xf86-input-wacom: 'b30e2d27fdb30ff4b425fc62432cab636fe163b9'
+  xproto: 'ab8666661fc68f075b8d6ffabe22c6b577c30ac1'
+  xrdb: 'ae86081a92522653ff1523c92524ff892f75d496' # X-resourcess
+  # (xf86_video_intel) has the library 'sna' and modesetting
+  xf86-video-intel: 'c89905754b929f0421db7ea6d60b8942ccdbd8af' # only will be build with master branch commit (c72bb27a3a68ecc616ce2dc8e9a1d20354504562)
+  intel-gpu-tools: ''
+  rendercheck: ''
+  piglit: ''
+2D_Driver:
+  # the driver that will be enable by default (this apply for Ubuntu 16.10)
+  sna: False # = xf86-video-intel
+  # (glamour) is the default driver in Ubuntu 16.10
+  glamour: True # = modesetting
+patchwork:
+  # (checkBeforeBuild) set to True in order to test the patch/mbox outside of the compilation a catch possible erros 'faster option'
+  checkBeforeBuild: True
+  libinput:
+    apply: False
+    path: ''
+  drm:
+    apply: False
+    path: ''
+  mesa:
+    apply: False
+    path: ''
+  xf86-video-intel:
+    apply: False
+    path: ''
+  xf86-video-vesa:
+    apply: False
+    path: ''
+  xf86-video-fbdev:
+    apply: False
+    path: ''
+  xf86-input-evdev:
+    apply: False
+    path: ''
+  xf86-input-keyboard:
+    apply: False
+    path: ''
+  xf86-input-wacom:
+    apply: False
+    path: ''
+  xkeyboard-config:
+    apply: False
+    path: ''
+  xkbcomp:
+    apply: False
+    path: ''
+  xf86-input-joystick:
+    apply: False
+    path: ''
+  xf86-input-libinput:
+    apply: False
+    path: ''
+  xf86-input-magictouch:
+    apply: False
+    path: ''
+  xf86-input-microtouch:
+    apply: False
+    path: ''
+  xf86-input-mouse:
+    apply: False
+    path: ''
+  xf86-input-mutouch:
+    apply: False
+    path: ''
+  xf86-input-synaptics:
+    apply: False
+    path: ''
+  xf86-input-vmmouse:
+    apply: False
+    path: ''
+  xf86-video-vmware:
+    apply: False
+    path: ''
+  xf86-video-qxl:
+    apply: False
+    path: ''
+  xf86-video-amdgpu:
+    apply: False
+    path: ''
+  xf86-video-ati:
+    apply: False
+    path: ''
+  xf86-video-radeonhd:
+    apply: False
+    path: ''
+  xf86-video-modesetting:
+    apply: False
+    path: ''
+  xf86-video-chips:
+    apply: False
+    path: ''
+  pixman:
+    apply: False
+    path: ''
+  glamor:
+    apply: False
+    path: ''
+  libva:
+    apply: False
+    path: ''
+  libva-utils:
+    apply: False
+    path: ''
+  intel-vaapi-driver:
+    apply: False
+    path: ''
+  cairo:
+    apply: False
+    path: ''
+  macros:
+    apply: False
+    path: ''
+  x11proto:
+    apply: False
+    path: ''
+  libxtrans:
+    apply: False
+    path: ''
+  libX11:
+    apply: False
+    path: ''
+  libXext:
+    apply: False
+    path: ''
+  dri2proto:
+    apply: False
+    path: ''
+  glproto:
+    apply: False
+    path: ''
+  xrdb:
+    apply: False
+    path: ''
+  libpciaccess:
+    apply: False
+    path: ''
+  xproto:
+    apply: False
+    path: ''
+  xserver:
+    apply: False
+    path: ''
+  libXfont:
+    apply: False
+    path: ''
+  intel-gpu-tools:
+    apply: False
+    path: '__patch_location__'
+  rendercheck:
+    apply: False
+    path: ''
+  piglit:
+    apply: False
+    path: ''
+miscellaneous:
+  maximum_permitted_time: 10000 # (hours)
+  mailing_list:
+    - humberto.i.perez.rodriguez@intel.com
+    - humberto.i.perez.rodriguez@linux.intel.com
+  upload_package: True
+  server_for_upload_package: linuxgraphics.intel.com
+  server_user: gfxserver

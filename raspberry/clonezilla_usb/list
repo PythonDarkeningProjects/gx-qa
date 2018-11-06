@@ -1,0 +1,4 @@
+EFI/boot/grub.cfg
+EFI/boot/ocswp-grub2.png
+syslinux/syslinux.cfg
+custom/default_mount.sh

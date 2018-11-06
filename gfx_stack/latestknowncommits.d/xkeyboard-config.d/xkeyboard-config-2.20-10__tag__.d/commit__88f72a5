@@ -1,0 +1,32 @@
+commit 88f72a50089f365e6f57190bd4897e25fcb1a425
+Author:     Sergey Udaltsov <sergey.udaltsov@gmail.com>
+AuthorDate: Sun May 7 23:04:49 2017 +0100
+Commit:     Sergey Udaltsov <sergey.udaltsov@gmail.com>
+CommitDate: Sun May 7 23:04:49 2017 +0100
+
+    Update to lk(us)
+    
+    https://bugs.freedesktop.org/show_bug.cgi?id=98098
+
+diff --git a/symbols/lk b/symbols/lk
+index 9b344e8..88b6aad 100644
+--- a/symbols/lk
++++ b/symbols/lk
+@@ -141,7 +141,7 @@ xkb_symbols "us" {
+ 
+   key <AC01> { [             a,        aacute,    adiaeresis ] };
+   key <AC02> { [             s,    VoidSymbol,    VoidSymbol ] };
+-  key <AC03> { [             d,             D,    VoidSymbol ] };
++  key <AC03> { [           eth,           ETH,    VoidSymbol ] };
+   key <AC04> { [         thorn,             f,    VoidSymbol ] };
+   key <AC05> { [             g,             G,    VoidSymbol ] };
+   key <AC06> { [             h,    VoidSymbol,    VoidSymbol ] };
+@@ -151,7 +151,7 @@ xkb_symbols "us" {
+   key <AC10> { [     semicolon,         colon,    VoidSymbol ] };
+   key <AC11> { [    apostrophe,      quotedbl,    VoidSymbol ] };
+ 
+-  key <AD01> { [           eth,           ETH,             q ] };
++  key <AD01> { [             d,             D,             q ] };
+   key <AD02> { [            ae,         acute,    VoidSymbol ] };
+   key <AD03> { [             e,        eacute,    ediaeresis ] };
+   key <AD04> { [             r,   ucircumflex,    VoidSymbol ] };

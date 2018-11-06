@@ -1,0 +1,9 @@
+tox
+PyYaml
+requests
+flask
+tabulate
+paramiko
+python-bugzilla
+urllib3
+mako

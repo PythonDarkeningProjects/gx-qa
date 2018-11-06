@@ -1,0 +1,25 @@
+commit b9f9c95ca2383460aa283adeeee6e0a66eed722b
+Author:     Mihail Konev <k.mvc@ya.ru>
+AuthorDate: Thu Jan 26 14:00:22 2017 +1000
+Commit:     Peter Hutterer <peter.hutterer@who-t.net>
+CommitDate: Thu Jan 26 14:00:22 2017 +1000
+
+    autogen: add default patch prefix
+    
+    Signed-off-by: Mihail Konev <k.mvc@ya.ru>
+
+diff --git a/autogen.sh b/autogen.sh
+index 0006de8..f3ad0f5 100755
+--- a/autogen.sh
++++ b/autogen.sh
+@@ -9,6 +9,9 @@ cd "$srcdir"
+ autoreconf -v --install || exit 1
+ cd "$ORIGDIR" || exit $?
+ 
++git config --local --get format.subjectPrefix >/dev/null 2>&1 ||
++    git config --local format.subjectPrefix "PATCH xf86-video-vesa"
++
+ if test -z "$NOCONFIGURE"; then
+     exec "$srcdir"/configure "$@"
+ fi
+

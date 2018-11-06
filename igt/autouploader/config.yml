@@ -1,0 +1,18 @@
+testReportCenter:
+  production:
+    url: 'https://otcqarpt.jf.intel.com/gfx/api/import?'
+    token: 'b43a95c0201020406733'
+    platformList: ['BDW','BSW','BXT','BYT','CNL','GLK','HSW','IVB','KBL','KBL-R','SKL','SNB','CFL']
+    releaseList: ['Installer','Kernel Release','Mesa Release','Platforms','Quarterly Release']
+  sandbox:
+    url: 'https://otcqarpt-stg.ostc.intel.com/gfx-sand/api/import?'
+    token: 'bebecc75620d546b6dd8'
+    platformList: ['BDW','BSW','BXT','BYT','CNL','GLK','HSW','IVB','KBL','KBL-R','SKL','SNB','CFL']
+    releaseList: ['Auto','Mesa Release','Platforms','Poc','Quarterly Release']
+  suiteList:
+    intel_gpu_tools: ['IGT','IGT fastfeedback','IGT clones']
+    mesa: ['GLCTS','WebGLC','3DGames','Piglit','DEQP']
+    xorgxserver: ['Rendercheck','Apps','Reliability','2DManual','Media','Compliance','DP Redesign SST','Functional']
+    power_performance: ['Power','Stress','Suspend','PSR']
+    kernel: ['Kernel']
+    UpdateTool: ['UpdateTool']

@@ -1,0 +1,11 @@
+######################## <Proxy configuration> #############################
+# This proxy configuration works under ssh and ubuntu 15 for git
+# Proxy configuration
+export ALL_PROXY=socks://proxy-socks.fm.intel.com:1080
+export all_proxy=socks://proxy-socks.fm.intel.com:1080
+export http_proxy=http://proxy.fm.intel.com:911
+export https_proxy=https://proxy.fm.intel.com:911
+export ftp_proxy=ftp://proxy.fm.intel.com:911
+export socks_proxy=socks://proxy-socks.fm.intel.com:1080
+export no_proxy=localhost,.intel.com,127.0.0.0/8,192.168.0.0/16,10.0.0.0/8
+######################## <Proxy configuration> #############################

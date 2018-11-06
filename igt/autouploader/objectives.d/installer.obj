@@ -1,0 +1,6 @@
+INTEL® GRAPHICS UPDATE TOOL FOR LINUX*
+
+DESCRIPTION
+The Intel® Graphics Update Tool for Linux* OS (formerly known as the Intel® Graphics Installer for Linux*) was renamed starting from version 2.0.2, in order to more accurately reflect the purpose of the tool. Linux distributions already include by default an Intel® graphics driver, without needing any extra installation. This tool aims to make the latest Intel® Graphics Stack available before it gets officially released by Linux* OS vendors. Specifically, it benefits those Linux* users of both Ubuntu* and Fedora* distributions who want to update their graphics subsystems for Intel® platforms.
+
+Need support for using the tool? Feel free to visit the following website : https://01.org/linuxgraphics/forum/graphics-installer-discussions

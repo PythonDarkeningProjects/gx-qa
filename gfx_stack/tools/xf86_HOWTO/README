@@ -1,0 +1,92 @@
+===================================================================
+=== WANING : This procedure only applies for Ubuntu 16.10 and newer
+===================================================================
+
+
+======================
+=== Pre-requisites ===
+======================
+
+1 - install a full graphic stack from (http://linuxgraphics.intel.com/deb/) with the following command
+
+	- # dpkg -i --force-overwrite <package.deb>
+
+2 - run the following commands :
+
+	# chown root.root /usr/bin/Xorg
+	# chmod 755 /usr/bin/Xorg
+	# chown root.root /etc/X11/xorg.conf
+	# chmod 755 /etc/X11/xorg.conf
+
+
+=====================================
+=== Enable xf86-video-intel (SNA) ===
+=====================================
+
+Steps :
+
+	1 - goto /opt/X11R7/lib/xorg/modules/drivers
+
+	2 - move (modesetting_drv.la) and (modesetting_drv.so) to another folder - DO NOT DELETE THEM!
+
+	3 - Reboot the system
+
+	4 - Checking the SNA driver (xf86-video-intel)
+		$ cat /opt/X11R7/var/log/Xorg.0.log | grep -i sna
+
+
+====================================
+=== Enable glamour (modesetting) ===
+====================================
+
+Steps :
+
+	NOTE : on ubuntu 16.10 and higher modesetting is enabled by default
+
+	1 - goto /opt/X11R7/lib/xorg/modules/drivers
+
+	2- Make sure that the following libraries are there
+		- modesetting_drv.la
+		- modesetting_drv.so
+
+	3 - Make sure tha the following libraries are not there
+		- intel_drv.la
+		- intel_drv.so
+
+	3 - Reboot the system
+
+	4 - Check if glamour (modesetting) is loaded in the system
+		$ cat /opt/X11R7/var/log/Xorg.0.log | grep -i modesetting
+
+=================================================
+=== Check if hardware accelaration is enabled ===
+=================================================
+
+	1 - type the following command on X :
+
+		/usr/lib/nux/unity_support_test -p
+
+		Note : the above command will not works under text mode
+
+		the output will be very similar to the following
+
+		Not software rendered:    yes
+		Not blacklisted:          yes
+		GLX fbconfig:             yes
+		GLX texture from pixmap:  yes
+		GL npot or rect textures: yes
+		GL vertex program:        yes
+		GL fragment program:      yes
+		GL vertex buffer object:  yes
+		GL framebuffer object:    yes
+		GL version is 1.4+:       yes
+		Unity 3D supported:       yes
+
+
+	2 - The most important values here are :
+
+		- Not software rendered:    yes
+		- Unity 3D supported:       yes
+
+		if the above values are set to yes, you are using hardware accelaration.
+		in other words you are using the GPU instead of the CPU

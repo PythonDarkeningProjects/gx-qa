@@ -1,0 +1,5 @@
+Host *
+ HostkeyAlgorithms +ssh-dss
+ PubkeyAcceptedKeyTypes +ssh-dss
+ ForwardAgent no
+ ForwardX11 no

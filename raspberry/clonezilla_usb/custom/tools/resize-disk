@@ -1,0 +1,105 @@
+#!/bin/bash
+
+# Copyright (c) 2018 Humberto Perez (humberto.i.perez.rodriguez@intel.com)
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+sleep 3
+
+echo -ne "\n\n"
+echo "+-+-+-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+ +-+-+-+-+"
+echo "|c|l|o|n|e|z|i|l|l|a| |r|e|s|i|z|i|n|g| |d|i|s|k|"
+echo "+-+-+-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+ +-+-+-+-+"
+echo -ne "\n\n"
+
+IMAGE_TO_RESTORE=$1
+
+# The local mount directories
+PARTIMAG="/home/partimag"
+
+function check_sanity() {
+    # Check if the exit status of each command during execution time is != to 0
+    # this function will stop the script and exit with 1.
+
+    if [[ ${EXIT_STATUS} -eq 1 ]];then
+        exit 1
+    fi
+}
+
+function check_output() {
+    # check the output of a command a export an exit status
+
+    local output sleep_time
+    output=$1
+    sleep_time=$2
+
+    if [[ ${output} -eq 0 ]]; then
+        echo "[DONE]"
+        export EXIT_STATUS=0
+    else
+        echo "[FAIL]"
+        export EXIT_STATUS=1
+    fi
+
+    # sleep time is needed in order to let to command will performed with success
+    sleep ${sleep_time}
+}
+
+# =============================
+# GLOBAL ENVIRONMENT VARIABLES
+# =============================
+
+# USB_MOUNT_POINT: will return something like "sda/sdb"
+USB_MOUNT_POINT=`lsblk -S | grep usb | awk '{print $1}'`
+# PARTITION: will returns something like sda/nvme0n1
+PARTITION=$(lsblk | grep disk | grep -v ${USB_MOUNT_POINT} | awk '{print $1}')
+FREE_SPACE=$(parted -s /dev/${PARTITION} unit GB print free 2> /dev/null | grep "Free Space" | tail -1 | awk '{print $3}' | sed 's/GB//g')
+# removing floating point (if any)
+FREE_SPACE=$(printf "%.0f\n" "${FREE_SPACE}"); [[ "${FREE_SPACE}" -gt 0 ]] && ((FREE_SPACE--))
+# getting the size of the disk when the image was uploaded
+RESTORE_IMAGE_SIZE=`cat ${PARTIMAG}/${IMAGE_TO_RESTORE}/blkdev.list | grep -w "sda" | awk '{print $3}' | tr -d "GBM"`
+# removing floating point (if any)
+RESTORE_IMAGE_SIZE=$(printf "%.0f\n" "${RESTORE_IMAGE_SIZE}"); [[ "${RESTORE_IMAGE_SIZE}" -gt 0 ]] && ((RESTORE_IMAGE_SIZE--))
+# getting the total disk space including the unallocated ones
+TOTAL_FREE_SPACE=$((FREE_SPACE+RESTORE_IMAGE_SIZE))
+# PARTITION_TO_GROW_NUMBER: will return the partition number like 3
+PARTITION_TO_GROW_NUMBER=$(parted -s /dev/${PARTITION} unit GB print free 2> /dev/null | grep "ext4" | awk '{print $1}')
+# LINUX_FILESYSTEM_PARTITION: will return something like /dev/sda3 | /dev/nvme0n1p3
+LINUX_FILESYSTEM_PARTITION=$(fdisk -l 2> /dev/null | grep "Linux filesystem" | awk '{print $1}')
+
+
+# WA in order to avoid the following message :
+# Warning: Not all of the space available to /dev/sda appears to be used, you can fix the GPT
+# to use all of the space (an extra 351630720 blocks) or continue with the current setting?
+# reference : https://unix.stackexchange.com/questions/190317/gnu-parted-resizepart-in-script
+echo -ne "- (info) - fixing GPT table ... "
+parted /dev/${PARTITION} print Fix
+check_output $? 5; check_sanity
+
+if [[ "${FREE_SPACE}" -gt 0 ]]; then
+    echo -ne "- (info) - resizing the partition ... "
+    parted -s /dev/${PARTITION} resizepart ${PARTITION_TO_GROW_NUMBER} ${TOTAL_FREE_SPACE}GB
+    check_output $? 5; check_sanity
+
+    echo -ne "- (info) - checking blocks ... "
+    e2fsck -y -f ${LINUX_FILESYSTEM_PARTITION}
+    check_output $? 5; check_sanity
+
+    echo -ne " - (info) - allocating unused disk space ... "
+    resize2fs ${LINUX_FILESYSTEM_PARTITION}
+    check_output $? 5; check_sanity
+else
+    echo "- (info) - There is not free space to grow the disk"
+fi
+exit 0

@@ -1,0 +1,14 @@
+[Unit]
+Description=daemon to track specific files
+Conflicts=getty@tty5.service
+After=systemd-user-sessions.service getty@tty1.service plymouth-quit.service
+
+[Service]
+User=gfx
+Group=gfx
+WorkingDirectory=/home/gfx/gfx-qa-tools
+Environment="PYTHONPATH=/home/gfx/gfx-qa-tools"
+ExecStart=/usr/bin/python /home/gfx/gfx-qa-tools/igt/tools/sentinel.py
+
+[Install]
+WantedBy=multi-user.target

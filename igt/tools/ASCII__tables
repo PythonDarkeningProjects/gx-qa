@@ -1,0 +1,21 @@
+=== script ====
+from tabulate import tabulate
+import pdb
+
+headers = ['Component','Name','Status','Bug','Comment']
+values = []
+
+for x in range(90):
+	updateRows = ['igt','kms@flip','pass','99180','ss']
+	values.append(updateRows)
+
+
+print tabulate(values, headers=headers, missingval='?', stralign='center', tablefmt='fancy_grid')
+
+=== examples ===
+
+print tabulate([['Component','Name','Status','Bug','Comment'],['igt','kms@flip','pass','99180','ss']], headers='firstrow', missingval='?', stralign='center', tablefmt='fancy_grid')
+
+tablefmt='html' << para formular paginas
+`None` values are replaced with a `missingval` string
+`False` values are replaced with a 0

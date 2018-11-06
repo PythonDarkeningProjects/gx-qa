@@ -1,0 +1,42 @@
+### Driver Graphics Stack path
+export INSTALL_ROOT=/opt/X11R7
+export PATH=${INSTALL_ROOT}/bin:$PATH
+export LIBGL_DRIVERS_PATH=${INSTALL_ROOT}/lib/dri:${INSTALL_ROOT}/lib
+export LD_LIBRARY_PATH=${INSTALL_ROOT}/lib:${INSTALL_ROOT}/lib32:/lib:/lib64:/usr/lib:/usr/lib64
+export LIBGL_DEBUG=verbose
+export PKG_CONFIG_PATH=${INSTALL_ROOT}/share/pkgconfig:${INSTALL_ROOT}/lib/pkgconfig:/usr/lib/pkgconfig:$PKG_CONFIG_PATH
+export SW="env LIBGL_ALWAYS_SOFTWARE=1"
+export LDFLAGS=" -L${INSTALL_ROOT}/lib $LDFLAGS"
+export ACLOCAL="aclocal -I ${INSTALL_ROOT}/share/aclocal"
+export CMAKE_INCLUDE_PATH=${INSTALL_ROOT}/include/:$CMAKE_INCLUDE_PATH
+export CMAKE_LIBRARY_PATH=${INSTALL_ROOT}/lib/:$CMAKE_LIBRARY_PATH
+export LIBVA_DRIVERS_PATH=${INSTALL_ROOT}/lib/dri
+export DISPLAY=:0
+export GIT_SSL_NO_VERIFY=1
+### waffle flag
+export LD_LIBRARY_PATH=/home/gfx/intel-graphics/waffle/lib:${LD_LIBRARY_PATH}
+### For igt
+export IGT_LOG_DEBUG=debug
+
+######################## <Proxy configuration> ########################
+# This proxy configuration works under ssh and ubuntu 15 for git
+# Proxy configuration
+export ALL_PROXY=socks://proxy-socks.fm.intel.com:1080
+export all_proxy=socks://proxy-socks.fm.intel.com:1080
+export http_proxy=http://proxy.fm.intel.com:911
+export https_proxy=https://proxy.fm.intel.com:911
+export ftp_proxy=ftp://proxy.fm.intel.com:911
+export socks_proxy=socks://proxy-socks.fm.intel.com:1080
+export no_proxy=localhost,.intel.com,127.0.0.0/8,192.168.0.0/16,10.0.0.0/8
+######################## <Proxy configuration> ########################
+
+
+######################## < Optional proxy file configuration> ########################
+### Git Proxy specifics
+# alias gpl='export GIT_PROXY_COMMAND='
+# alias gpr='export GIT_PROXY_COMMAND="/home/$CUSER/bin/git-proxy"'
+######################## < Optional proxy configuration> ########################
+
+
+
+

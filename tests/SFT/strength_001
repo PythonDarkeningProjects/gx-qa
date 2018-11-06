@@ -1,0 +1,1 @@
+sh test.sh -i 10 -t "render rotation vt video"

@@ -1,0 +1,52 @@
+usb_conf :
+  network_interface :
+  custom_hostname : clonez
+  server_hostname : bifrost.intel.com
+  server_user : root
+  server_partimag : /home/clonezilla
+  server_shared : /home/shared/
+  default_image : Ubuntu_16.04_64bit_60GB
+  default_disk :
+  usb_update_mode : off
+
+raspberry_conf :
+  raspberry_ip : 10.219.106.15
+  raspberry_user : pi
+  usb_cutter_serial : 1502997
+  raspberry_power_switch : 2
+  raspberry_number : 2
+  raspberry_gpio : 3
+
+suite_conf :
+  kernel_branch : drm-intel-qa
+  kernel_commit : b2c7ef9
+  gfx_stack_code : 109297311
+  default_package : igt_auto
+  default_mailing_list : humberto.i.perez.rodriguez@intel.com,luis.botello.ortega@intel.com
+  blacklist_file : no
+  igt_iterations : 2
+
+dut_conf :
+  dut_hostname : BDW-debug
+  dut_static_ip : 10.219.128.216
+  grub_parameters : drm.debug=0xe
+  dut_user : gfx
+  dut_password : linux
+  graphical_environment : off
+  autologin : no
+
+firmwares :
+  guc : bxt_guc_ver8_7
+  dmc : bxt_dmc_ver1_07
+  huc : bxt_huc_ver01_07_1398
+
+database :
+  upload_reports : no
+
+autouploader :
+  trc_report : no
+  currentEnv : sand
+  currentPlatform : BDW
+  currentRelease : Platforms
+  currentSuite : IGT
+  currentTittle : 2016Q4

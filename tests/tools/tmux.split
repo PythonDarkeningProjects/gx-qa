@@ -1,0 +1,11 @@
+#!/bin/bash
+
+_count=`ls /tmp/ | grep "^tmux_" | wc -l`
+if [ "${_count}" = "0" ]; then touch /tmp/tmux_1 &> /dev/null; fi
+((_count++))
+_session_name="tmux_${_count}"
+tmux new-session -d -s ${_session_name} # some command here --> 'vim'
+tmux split-window -h -p 50
+#tmux split-window -h
+touch /tmp/tmux_${_count}
+tmux attach-session -d -t ${_session_name}

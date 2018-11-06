@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [ $# -lt 2 ]; then
+    echo "Usage: ${0##*/} FILESYSTEM PARTITION"
+    echo "       e.g: ${0##*/} ext4 /dev/sda2"
+    exit 1
+fi
+
+# Mount DUT's filesystem
+mount -t "$1" -o rw "$2" /mnt
+mount --bind /dev /mnt/dev
+mount --bind /proc /mnt/proc
+mount --bind /sys /mnt/sys
+
+# Chroot into DUT's filesystem and run deployment script
+chroot /mnt /bin/bash
+
+# Umount system
+sync
+umount /mnt/sys
+umount /mnt/proc
+umount /mnt/dev
+umount /mnt
+
+exit 0

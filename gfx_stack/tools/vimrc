@@ -1,0 +1,64 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => VIM user interface
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Indent automatically depending on filetype
+" filetype indent on
+" filetype plugin on
+" set autoindent
+" Turn on line numbering. Turn it off with "set nonu"
+set number
+" showing number with a key
+nmap <F12> :set invnumber<CR>
+" Highlight search
+set hls
+" Hightliht maches
+set hlsearch 
+" search as characters are entered (prety cool)
+set incsearch
+"Always show current position
+set ruler
+" When searching try to be smart about cases 
+set smartcase
+" For regular expressions turn magic on
+set magic
+" highlight current line
+set cursorline
+" highlight matching [{()}]
+set showmatch
+" show a vertical line after 81 characters
+" highlight ColorColumn ctermbg=magenta "set to whatever you like
+" call matchadd('ColorColumn', '\%81v', 100) "set column nr           
+set clipboard=exclude:.*
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Colors and Fonts
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+colorscheme desert
+set background=dark
+" Set utf8 as standard encoding and en_US as the standard language
+set encoding=utf8
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Files, backups and undo
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Turn backup off, since most stuff is in SVN, git et.c anyway...
+set nobackup
+set nowb
+set noswapfile
+
+" Return to last edit position when opening files (You want this!)
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+" Remember info about open buffers on close
+set viminfo^=%
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Misc
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Remove the Windows ^M - when the encodings gets messed up
+noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
+" References
+" https://amix.dk/vim/vimrc.html
+" http://dougblack.io/words/a-good-vimrc.html

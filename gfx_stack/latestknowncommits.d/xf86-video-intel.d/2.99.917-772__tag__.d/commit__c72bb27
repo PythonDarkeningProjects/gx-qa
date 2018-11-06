@@ -1,0 +1,27 @@
+commit c72bb27a3a68ecc616ce2dc8e9a1d20354504562
+Author:     Chris Wilson <chris@chris-wilson.co.uk>
+AuthorDate: Tue Apr 18 20:39:24 2017 +0100
+Commit:     Chris Wilson <chris@chris-wilson.co.uk>
+CommitDate: Tue Apr 18 20:40:47 2017 +0100
+
+    sna: Fix fallback clearing of the shadow
+    
+    The size we need to clear is pitch * height, not pitch * width.
+    
+    Reported-by: Ilia Mirkin <imirkin@alum.mit.edu>
+    Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+
+diff --git a/src/sna/sna_display.c b/src/sna/sna_display.c
+index f69bb4d..795d099 100644
+--- a/src/sna/sna_display.c
++++ b/src/sna/sna_display.c
+@@ -2572,7 +2572,7 @@ static void shadow_clear(struct sna *sna,
+        if (!ok) {
+                void *ptr = kgem_bo_map__gtt(&sna->kgem, bo);
+                if (ptr)
+-                       memset(ptr, 0, bo->pitch * crtc->mode.HDisplay);
++                       memset(ptr, 0, bo->pitch * crtc->mode.VDisplay);
+        }
+        sna->mode.shadow_dirty = true;
+ }
+

@@ -1,0 +1,14 @@
+
+1) type the following command : 
+	sudo swapoff /dev/sdaX (this command will umount the swap partition)(use "sudo lsblk | grep SWAP")
+	
+2) sudo mkswap /dev/sdaX <-- this is where is your swap partition 
+	this command will return a new UUID that you need to replace for the old in /etc/fstab
+
+	2.1) # nano /etc/fstab
+
+		and replace the line below of this for the UUID get in the previous step: # swap was on /dev/sdaX during installation
+		UUID=<your_new_UUID>
+
+3) sudo swapon /dev/sdaX (this command will mount the swap againg)
+4) reboot the DUT

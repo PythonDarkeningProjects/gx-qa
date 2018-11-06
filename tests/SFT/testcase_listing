@@ -1,0 +1,43 @@
+#                                                                                        
+# Copyright                                                                              
+#                                                                                        
+# License                                                                                
+#                                                                                        
+# Authors:                                                                               
+#       Elva, Fu  <elva.fu@intel.com>                                                              
+#                                                                                        
+# STF will execute each test case according the info defined in this file                
+# Entries need to be in the following format:                                            
+#                                                                                        
+# TESTCASENAME:TESTCASEPARAMLIST:SCENARIONAME:TIMEOUT:TESTCASEDESCRIPTION                
+# Each test case gets a single record. The record is split into fields delimited by colon
+#                                                                                         
+# TESTCASENAME -- the executable test case name to run                                   
+# TESTCASEPARAMLIST -- the arguments to be passed to executable test case.               
+# SCENARIONAME -- define which scenario this test case belongs to.                       
+#    Scenario is the collection of one or several test cases.                            
+#    If several scenarios involved this test case, then all related scenario should be   
+#    listed here; each of them is split by space.                                        
+#    Usually ABAT and SEMI-AUTO scenarios is reserved.                                   
+#    ABAT -- "automated basic acceptance test". Tester can select a few basic automatic  
+#            test cases from test suite as ABAT. It can make a very fast quality         
+#            evaluation for product build.                                               
+#    SEMI-AUTO -- "semi-automatic test case". This kind of test case needs tester's      
+#                  interaction during executing.                                         
+# TIMEOUT -- timeout duration in seconds.                                                
+#          STF allows to run executable test case with a timeout limit.                  
+#          If this field is omitted, STF will use default value 5.                       
+#          Tester can modify environment "DefaultTimeOut" to change the default value.   
+# TESTCASEDESCRIPTION -- a brief account of the test case                                
+#                                                                                        
+# each line can degrade to a simple test case name if no arguments needed, using default 
+# timeout, no scenario defined for this test case...                                     
+#                                                                                        
+# example:                                                                               
+# testcase_001:param:ABAT:10:testcase_001 description                                    
+# testcase_002::ABAT:8                                                                   
+# testcase_003:::8:hello_world                                                           
+# testcase_004                                                                           
+#                                                                                        
+
+strength_001::NOSUSPENDRESUME:3600:VT, render, video, rotation

@@ -1,0 +1,11 @@
+==== In order to compile in the correct way xorg-xserver driver we must do the following  ====
+
+==== Steps ====                                                                                                                                                                           
+1) in the file called (config.yml) we must to set the following keys
+        unser 'specific_commit' key
+                set xserver / xf86-video-intel / xf86-video-vesa / xf86-video-fbdev / xf86-input-evdev 
+1.2) to complete the above step, see the folder (latestknowncommits.d) in order to know the commit for each driver
+
+==== Considerations ====
+The following driver will not compile with latest commit
+- xf86-video-fbdev 

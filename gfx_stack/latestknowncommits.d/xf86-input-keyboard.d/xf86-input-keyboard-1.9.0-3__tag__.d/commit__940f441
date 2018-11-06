@@ -1,0 +1,25 @@
+commit 940f44149d1037cfc14bbb3628044a2bd002c33e
+Author:     Mihail Konev <k.mvc@ya.ru>
+AuthorDate: Thu Jan 26 14:00:21 2017 +1000
+Commit:     Peter Hutterer <peter.hutterer@who-t.net>
+CommitDate: Thu Jan 26 14:00:21 2017 +1000
+
+    autogen: add default patch prefix
+    
+    Signed-off-by: Mihail Konev <k.mvc@ya.ru>
+
+diff --git a/autogen.sh b/autogen.sh
+index 0006de8..b57731c 100755
+--- a/autogen.sh
++++ b/autogen.sh
+@@ -9,6 +9,9 @@ cd "$srcdir"
+ autoreconf -v --install || exit 1
+ cd "$ORIGDIR" || exit $?
+ 
++git config --local --get format.subjectPrefix >/dev/null 2>&1 ||
++    git config --local format.subjectPrefix "PATCH xf86-input-keyboard"
++
+ if test -z "$NOCONFIGURE"; then
+     exec "$srcdir"/configure "$@"
+ fi
+
